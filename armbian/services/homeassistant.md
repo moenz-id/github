@@ -46,7 +46,7 @@ docker network create internal_net
 │       ├── config
 │       ├── data
 │       └── log
-└── stacks
+└── stack
     └── homeassistant
         └── compose.yaml
 ```
@@ -78,20 +78,20 @@ mkdir -p /data/appdata/homeassistant
 mkdir -p /data/appdata/mosquitto/config
 mkdir -p /data/appdata/mosquitto/data
 mkdir -p /data/appdata/mosquitto/log
-mkdir -p /data/stacks/homeassistant
+mkdir -p /data/stack/homeassistant
 ```
 
 Salin compose dan contoh konfigurasi:
 
 ```bash
-cp docker/homeassistant.yaml /data/stacks/homeassistant/compose.yaml
+cp docker/homeassistant.yaml /data/stack/homeassistant/compose.yaml
 cp docker/mosquitto.conf.example /data/appdata/mosquitto/config/mosquitto.conf
 ```
 
 Validasi dan deploy:
 
 ```bash
-cd /data/stacks/homeassistant
+cd /data/stack/homeassistant
 docker compose config
 docker compose pull
 docker compose up -d
@@ -116,7 +116,7 @@ Direktori yang perlu dibackup:
 ```text
 /data/appdata/homeassistant
 /data/appdata/mosquitto
-/data/stacks/homeassistant
+/data/stack/homeassistant
 ```
 
 Dengan backup direktori tersebut, deployment dapat dipulihkan dengan cepat setelah reinstall Armbian atau migrasi perangkat.
