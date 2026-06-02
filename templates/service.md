@@ -31,7 +31,7 @@ docker network ls
 ```text
 /data
 ├── appdata
-└── stacks
+└── stack
 ```
 
 ---
@@ -45,9 +45,9 @@ File compose:
 Deploy:
 
 ```bash
-mkdir -p /data/stacks/service
-cp docker/service.yaml /data/stacks/service/compose.yaml
-cd /data/stacks/service
+mkdir -p /data/stack/service
+cp docker/service.yaml /data/stack/service/compose.yaml
+cd /data/stack/service
 docker compose config
 docker compose pull
 docker compose up -d
@@ -68,7 +68,7 @@ docker logs -f service
 
 ```text
 /data/appdata/service
-/data/stacks/service
+/data/stack/service
 ```
 
 ---
