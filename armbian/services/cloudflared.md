@@ -10,7 +10,7 @@ Panduan ini mengikuti standar homelab repository:
 
 - Docker Compose
 - /data/appdata
-- /data/stacks
+- /data/stack
 - internal_net
 
 ---
@@ -82,7 +82,7 @@ Simpan token tersebut.
 /data
 ├── appdata
 │   └── cloudflared
-└── stacks
+└── stack
     └── cloudflared
 ```
 
@@ -90,7 +90,7 @@ Buat direktori:
 
 ```bash
 mkdir -p /data/appdata/cloudflared
-mkdir -p /data/stacks/cloudflared
+mkdir -p /data/stack/cloudflared
 ```
 
 ---
@@ -104,18 +104,18 @@ File compose tersedia di:
 Buat file deployment:
 
 ```bash
-cp docker/cloudflared.yaml /data/stacks/cloudflared/compose.yaml
-cp docker/.env.example /data/stacks/cloudflared/.env
+cp docker/cloudflared.yaml /data/stack/cloudflared/compose.yaml
+cp docker/.env.example /data/stack/cloudflared/.env
 ```
 
-Edit `/data/stacks/cloudflared/.env` dan isi `TUNNEL_TOKEN`.
+Edit `/data/stack/cloudflared/.env` dan isi `TUNNEL_TOKEN`.
 
 ---
 
 # Validasi Compose
 
 ```bash
-cd /data/stacks/cloudflared
+cd /data/stack/cloudflared
 
 docker compose config
 ```
@@ -125,7 +125,7 @@ docker compose config
 # Download Image
 
 ```bash
-cd /data/stacks/cloudflared
+cd /data/stack/cloudflared
 
 docker compose pull
 ```
@@ -135,7 +135,7 @@ docker compose pull
 # Deploy Container
 
 ```bash
-cd /data/stacks/cloudflared
+cd /data/stack/cloudflared
 
 docker compose up -d
 ```
@@ -208,7 +208,24 @@ n8n.domain.com
 
 adguard.domain.com
 → AdGuard Home
+
+search.domain.com
+→ SearXNG
 ```
+
+Untuk SearXNG, target service di Cloudflare Zero Trust sebaiknya diarahkan ke:
+
+```text
+http://searxng:8080
+```
+
+Contoh hostname publik yang dipakai di repo ini:
+
+```text
+https://search.moenz.my.id/
+```
+
+Karena SearXNG tidak mem-publish port host, akses publik hanya lewat tunnel.
 
 ---
 
@@ -239,7 +256,7 @@ juga direkomendasikan menggunakan network yang sama.
 Direktori yang perlu dibackup:
 
 ```text
-/data/stacks/cloudflared
+/data/stack/cloudflared
 ```
 
 Karena konfigurasi tunnel berada di Cloudflare Dashboard, biasanya cukup menyimpan compose file dan `.env.example`.
@@ -251,7 +268,7 @@ Jangan commit file `.env` yang berisi `TUNNEL_TOKEN`.
 # Update Cloudflared
 
 ```bash
-cd /data/stacks/cloudflared
+cd /data/stack/cloudflared
 
 docker compose pull
 docker compose up -d
