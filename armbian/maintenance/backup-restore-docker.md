@@ -48,7 +48,7 @@ Backup direktori berikut:
 
 ```text
 /data/appdata
-/data/stacks
+/data/stack
 ```
 
 Pada layout lama, lokasi penting yang pernah digunakan:
@@ -72,7 +72,7 @@ Contoh backup bind mount ke PC:
 
 ```bash
 sudo rsync -avz /data/appdata/ user@BACKUP_PC:/home/user/backup/appdata/
-sudo rsync -avz /data/stacks/ user@BACKUP_PC:/home/user/backup/stacks/
+sudo rsync -avz /data/stack/ user@BACKUP_PC:/home/user/backup/stack/
 ```
 
 Jika masih memakai layout lama:
