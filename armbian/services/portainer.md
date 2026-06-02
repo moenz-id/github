@@ -16,7 +16,7 @@ Panduan ini mengikuti standar homelab repository:
 
 - Docker Root berada di SD Card (opsional)
 - Data aplikasi berada di /data/appdata
-- Stack berada di /data/stacks
+- Stack berada di /data/stack
 - Menggunakan network internal_net
 
 ---
@@ -50,7 +50,7 @@ docker network create internal_net
 /data
 ├── appdata
 │   └── portainer
-└── stacks
+└── stack
     └── portainer
 ```
 
@@ -70,19 +70,19 @@ Buat direktori:
 
 ```bash
 mkdir -p /data/appdata/portainer
-mkdir -p /data/stacks/portainer
+mkdir -p /data/stack/portainer
 ```
 
 Salin compose:
 
 ```bash
-cp docker/portainer.yaml /data/stacks/portainer/compose.yaml
+cp docker/portainer.yaml /data/stack/portainer/compose.yaml
 ```
 
 Validasi dan deploy:
 
 ```bash
-cd /data/stacks/portainer
+cd /data/stack/portainer
 docker compose config
 docker compose pull
 docker compose up -d
@@ -113,7 +113,7 @@ Portainer akan meminta pembuatan akun administrator pada login pertama.
 
 ```text
 /data/appdata/portainer
-/data/stacks/portainer
+/data/stack/portainer
 ```
 
 ---
