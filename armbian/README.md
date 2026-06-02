@@ -17,7 +17,8 @@ armbian/
 ├── services/
 │   ├── cloudflared.md
 │   ├── homeassistant.md
-│   └── portainer.md
+│   ├── portainer.md
+│   └── searxng.md
 ├── maintenance/
 │   ├── backup-restore-docker.md
 │   └── troubleshooting.md
@@ -49,11 +50,13 @@ Dokumentasi deployment layanan yang digunakan pada homelab.
 - [Home Assistant](services/homeassistant.md)
 - [Portainer](services/portainer.md)
 - [Cloudflared](services/cloudflared.md)
+- [SearXNG](services/searxng.md)
 
 Topik:
 - Home Assistant + Mosquitto
 - Portainer CE
 - Cloudflare Tunnel
+- SearXNG
 
 ---
 
