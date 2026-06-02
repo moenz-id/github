@@ -7,7 +7,7 @@ Folder ini menyimpan file Docker Compose untuk layanan homelab.
 - [homeassistant.yaml](homeassistant.yaml) - Home Assistant dan Mosquitto
 - [portainer.yaml](portainer.yaml) - Portainer CE
 - [cloudflared.yaml](cloudflared.yaml) - Cloudflare Tunnel
-- [searxng.yaml](searxng.yaml) - SearXNG
+- [searxng.yaml](searxng.yaml) - SearXNG + Valkey
 
 ## Environment
 
@@ -34,3 +34,5 @@ network_mode: host
 ```
 
 Mosquitto tetap menggunakan `internal_net`, tetapi port `1883` dipublish agar Home Assistant yang berjalan di host network dapat mengakses broker melalui IP host atau `localhost`.
+
+SearXNG juga memakai `internal_net` dan punya Valkey sendiri untuk limiter dan bot detection. Jika instance dipublikasikan lewat Cloudflare Tunnel, target service di Zero Trust sebaiknya diarahkan ke `http://searxng:8080`.
