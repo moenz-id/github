@@ -190,7 +190,7 @@ Contoh struktur direktori:
 │   ├── esphome
 │   └── n8n
 ├── backups
-└── stacks
+└── stack
 ```
 
 Buat direktori:
@@ -198,7 +198,7 @@ Buat direktori:
 ```bash
 mkdir -p /data/appdata
 mkdir -p /data/backups
-mkdir -p /data/stacks
+mkdir -p /data/stack
 ```
 
 ---
