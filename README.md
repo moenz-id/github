@@ -1,233 +1,90 @@
-# moenz-ops
+# 🛠️ moenz-ops
 
-Personal Linux operations knowledge base berisi dokumentasi troubleshooting, recovery guide, konfigurasi system, dan catatan sysadmin yang digunakan untuk kebutuhan sehari-hari.
-
-Repository ini dibuat sebagai:
-
-- Personal sysadmin notebook
-- Linux troubleshooting archive
-- Recovery documentation
-- System configuration reference
-- Operational notes repository
+**Personal Linux Operations Knowledge Base**
+*Knowledge base pribadi berisi dokumentasi troubleshooting, recovery guide, konfigurasi sistem, dan catatan sysadmin untuk kebutuhan operasional sehari-hari.*
 
 ---
 
-# Focus Areas
+## 🎯 Tujuan Repository
+Repository ini berfungsi sebagai pusat dokumentasi teknis untuk memastikan efisiensi dalam pemeliharaan sistem dan mempercepat proses recovery saat terjadi kegagalan sistem.
 
-- Linux troubleshooting
-- Bootloader recovery
-- UEFI & GRUB repair
-- Desktop environment configuration
-- System maintenance
-- Recovery & disaster mitigation
-- Personal operations notes
-- Docker & homelab operations
-- Armbian STB infrastructure
+- 📒 **Personal Sysadmin Notebook**: Catatan konfigurasi harian.
+- 🛠️ **Troubleshooting Archive**: Dokumentasi solusi atas masalah yang pernah terjadi.
+- 🚑 **Recovery Documentation**: Panduan langkah-demi-langkah untuk disaster mitigation.
+- ⚙️ **System Configuration Reference**: Referensi standar konfigurasi sistem.
 
 ---
 
-# Repository Structure
+## 📉 Operational Flow Diagram
 
-```text
-moenz-ops/
-├── .editorconfig
-├── .gitignore
-├── README.md
-├── SECURITY.md
-├── armbian/
-│   ├── README.md
-│   ├── setup/
-│   ├── services/
-│   └── maintenance/
-├── docker/
-│   ├── .env.example
-│   ├── README.md
-│   ├── cloudflared.yaml
-│   ├── homeassistant.yaml
-│   ├── mosquitto.conf.example
-│   ├── portainer.yaml
-│   └── searxng.yaml
-├── linux/
-    ├── README.md
-    └── guides/
-└── templates/
-    └── service.md
-```
-
-Planned structure:
-
-```text
-linux/
-    ├── guides/
-    ├── scripts/
-    ├── notes/
-    └── cheatsheets/
+```mermaid
+graph TD
+    A[🏠 User/Admin] --> B{📖 moenz-ops}
+    B --> C[🐧 Linux Guides]
+    B --> D[🐳 Docker Ops]
+    B --> E[🍓 Armbian STB]
+    B --> F[📋 Templates]
+    
+    C -->|Base OS| D
+    D -->|Runs on| E
+    F -->|Config for| D
+    F -->|Config for| E
+    
+    subgraph Recovery_Path
+    C -->|Recovery| G[🚑 GRUB/Initramfs Repair]
+    end
+    
+    subgraph Deployment_Path
+    D -->|Compose| H[🚀 n8n/Portainer/HA]
+    end
 ```
 
 ---
 
-# Armbian Documentation
+## 🗺️ Navigasi Repository
 
-Dokumentasi terkait:
-
-- Docker backup & restore
-- STB homelab setup
-- Network troubleshooting
-- DNS & gateway recovery
-- MAC conflict troubleshooting
-- Docker recovery workflow
-
-Documentation:
-
-- [Armbian Overview](armbian/README.md)
-- [Install Docker](armbian/setup/install-docker.md)
-- [Install Tailscale](armbian/setup/install-tailscale.md)
-- [Migrate Docker Root to SD Card](armbian/setup/migrate-docker-root-to-sdcard.md)
-- [Home Assistant](armbian/services/homeassistant.md)
-- [Portainer](armbian/services/portainer.md)
-- [Cloudflared](armbian/services/cloudflared.md)
-- [Docker Backup & Restore](armbian/maintenance/backup-restore-docker.md)
-- [Armbian Troubleshooting](armbian/maintenance/troubleshooting.md)
+| Folder       | Deskripsi                                    | Konten Utama                                    |
+| :---         | :---                                         | :---                                            |
+| [`armbian/`](./armbian/)   | Dokumentasi infrastruktur STB & Armbian          | Setup Docker, n8n, dan Troubleshooting STB        |
+| [`docker/`](./docker/)     | Pusat konfigurasi container                      | Docker Compose files & setup Portainer            |
+| [`linux/`](./linux/)       | Panduan umum sistem operasi Linux               | GRUB repair, initramfs recovery, & setup awal    |
+| [`templates/`](./templates/) | Boilerplate & standar konfigurasi              | Template ESPHome & Home Assistant automation     |
+| [`scripts/`](./scripts/)   | Otomatisasi & utilitas pembantu                | Backup, Sync, & Maintenance scripts              |
 
 ---
 
-# Docker Compose
+## 📏 Standar Dokumentasi
 
-File Docker Compose disimpan terpusat di:
+Untuk menjaga konsistensi, setiap dokumen baru diusahakan mengikuti standar berikut:
 
-- [Docker Compose Files](docker/README.md)
+**1. Struktur Konten:**
+- **Summary**: Ringkasan masalah/tujuan.
+- **Environment**: Detail OS/Hardware yang digunakan.
+- **Step-by-step Guide**: Langkah eksekusi yang jelas.
+- **Verification**: Cara memastikan solusi berhasil.
+- **Post-mortem**: Analisis penyebab masalah.
+- **Prevention**: Langkah pencegahan agar masalah tidak terulang.
 
-Compose utama:
-
-- [homeassistant.yaml](docker/homeassistant.yaml)
-- [portainer.yaml](docker/portainer.yaml)
-- [cloudflared.yaml](docker/cloudflared.yaml)
-- [searxng.yaml](docker/searxng.yaml)
-
----
-
-# Linux Guides
-
-- [Linux Documentation](linux/README.md)
-
-## Recover GRUB & Initramfs
-
-Recovery guide ketika Linux gagal boot dan masuk ke BusyBox/initramfs.
-
-Topics:
-
-- fsck recovery
-- chroot repair
-- reinstall GRUB
-- EFI troubleshooting
-- SMART health check
-
-Documentation:
-
-- [recover-initramfs-grub.md](linux/guides/recover-initramfs-grub.md)
+**2. Naming Convention:**
+- **Markdown Files**: `verb-topic.md` (Contoh: `recover-initramfs-grub.md`)
+- **Scripts**: `verb-purpose.sh` (Contoh: `backup-home.sh`)
 
 ---
 
-## Remove Windows Boot Entry
+## 🚀 Quick Start Guide
 
-Membersihkan Windows Boot Manager setelah migrasi penuh ke Ubuntu.
-
-Topics:
-
-- efibootmgr
-- UEFI cleanup
-- GRUB cleanup
-- disable os-prober
-
-Documentation:
-
-- [remove-windows-boot-entry.md](linux/guides/remove-windows-boot-entry.md)
+Jika Anda mencari solusi cepat, silakan cek:
+- **Gagal Boot/Masuk BusyBox?** -> Lihat [`linux/guides/recover-initramfs-grub.md`](./linux/guides/recover-initramfs-grub.md)
+- **Setup Container Baru?** -> Lihat [`docker/README.md`](./docker/README.md)
+- **Konfigurasi Armbian?** -> Lihat [`armbian/README.md`](./armbian/README.md)
 
 ---
 
-## Enable Login Screen In LightDM
-
-Mengaktifkan kembali login screen pada Armbian XFCE menggunakan LightDM.
-
-Topics:
-
-- auto login
-- LightDM configuration
-- XFCE login session
-
-Documentation:
-
-- [enable-login-screen-lightdm.md](linux/guides/enable-login-screen-lightdm.md)
+## 🔮 Future Plans
+- [ ] Otomatisasi skrip backup & restore.
+- [ ] Dokumentasi infrastruktur dalam bentuk diagram (Mermaid/Draw.io).
+- [ ] Networking guides & server management.
 
 ---
 
-# Documentation Standard
-
-Setiap dokumentasi di repository ini diusahakan memiliki:
-
-- Summary
-- Environment
-- Step-by-step guide
-- Verification
-- Post-mortem
-- Prevention / mitigation
-
-Template service tersedia di:
-
-- [templates/service.md](templates/service.md)
-
----
-
-# Naming Convention
-
-## Markdown Files
-
-```text
-verb-topic.md
-```
-
-Example:
-
-```text
-recover-initramfs-grub.md
-remove-windows-boot-entry.md
-enable-login-screen-lightdm.md
-```
-
----
-
-## Scripts
-
-```text
-verb-purpose.sh
-```
-
-Example:
-
-```text
-backup-home.sh
-mount-nas.sh
-repair-network.sh
-```
-
----
-
-# Future Plans
-
-Planned repository expansion:
-
-- automation scripts
-- docker notes
-- networking guides
-- server management
-- homelab documentation
-- shell utilities
-- recovery scripts
-- infrastructure diagrams
-- backup automation
-
----
-
-# Notes
-
-Semua dokumentasi ditulis berdasarkan pengalaman penggunaan nyata dan dapat berubah sesuai kebutuhan environment.
+**Note:** *Semua dokumentasi ditulis berdasarkan pengalaman penggunaan nyata dan dapat berubah sesuai kebutuhan environment.*
