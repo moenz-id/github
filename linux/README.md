@@ -2,6 +2,10 @@
 
 Dokumentasi Linux umum di luar konteks Armbian homelab.
 
+## Setup
+
+- [Base Server Setup (Ubuntu)](setup/base-server-setup.md)
+
 ## Guides
 
 - [Recover GRUB & Initramfs](guides/recover-initramfs-grub.md)

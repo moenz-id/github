@@ -83,7 +83,7 @@ Jika Anda mencari solusi cepat, silakan cek:
 ## 🔮 Future Plans
 - [ ] Otomatisasi skrip backup & restore.
 - [ ] Dokumentasi infrastruktur dalam bentuk diagram (Mermaid/Draw.io).
-- [ ] Networking guides & server management.
+- [x] Networking guides & server management.
 
 ---
 
